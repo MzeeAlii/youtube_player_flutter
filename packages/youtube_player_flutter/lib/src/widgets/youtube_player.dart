@@ -57,6 +57,7 @@ class YoutubePlayer extends StatefulWidget {
     super.key,
     required this.controller,
     this.aspectRatio = 16 / 9,
+    this.borderRadius = BorderRadius.zero,
     this.builder,
     this.autoHideDuration = const Duration(seconds: 3),
     this.backgroundColor,
@@ -73,6 +74,9 @@ class YoutubePlayer extends StatefulWidget {
 
   /// Aspect ratio of the video surface. Defaults to 16/9.
   final double aspectRatio;
+
+  /// Corner radius of the inline (non-fullscreen) player.
+  final BorderRadius borderRadius;
 
   /// Provide this to fully replace the default controls overlay.
   ///
@@ -187,6 +191,7 @@ class _YoutubePlayerState extends State<YoutubePlayer>
     final iframePlayer = yp_iframe.YoutubePlayer(
       controller: widget.controller,
       aspectRatio: widget.aspectRatio,
+      borderRadius: widget.borderRadius,
       gestureRecognizers: widget.gestureRecognizers,
       backgroundColor: widget.backgroundColor,
       enableFullScreenOnVerticalDrag: widget.enableFullScreenOnVerticalDrag,

@@ -37,7 +37,13 @@ class YoutubePlayer extends StatefulWidget {
     this.thumbnailFormat = .webp,
     this.initParams,
     this.controlsBuilder,
+    this.borderRadius = BorderRadius.zero,
   });
+
+  /// Corner radius of the inline (non-fullscreen) player.
+  ///
+  /// Defaults to [BorderRadius.zero].
+  final BorderRadius borderRadius;
 
   /// The controller for this player.
   final YoutubePlayerController controller;
@@ -354,6 +360,7 @@ class _YoutubePlayerState extends State<YoutubePlayer>
               fullscreenCount: _fullscreenCount,
               thumbnailQuality: widget.thumbnailQuality,
               thumbnailFormat: widget.thumbnailFormat,
+              borderRadius: widget.borderRadius,
             ),
             child: AspectRatio(
               aspectRatio: widget.aspectRatio,
@@ -412,8 +419,10 @@ class _PlayerOverlayContent extends StatelessWidget {
     this.webViewKey,
     this.thumbnailQuality = .high,
     this.thumbnailFormat = .webp,
+    this.borderRadius = BorderRadius.zero,
   });
 
+  final BorderRadius borderRadius;
   final YoutubePlayerController controller;
   final GlobalKey? webViewKey;
   final Rect playerRect;
@@ -507,10 +516,10 @@ class _PlayerOverlayContent extends StatelessWidget {
             child: CompositedTransformFollower(
               link: layerLink,
               showWhenUnlinked: false,
-              // Fork patch: the overlay sits outside the caller's tree, so a
-              // ClipRRect around the player can't round it. Clip here instead.
+              // The overlay sits outside the caller's tree, so callers can't
+              // clip it; round it here.
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: borderRadius,
                 child: SizedBox(
                   width: playerRect.width,
                   height: playerRect.height,
