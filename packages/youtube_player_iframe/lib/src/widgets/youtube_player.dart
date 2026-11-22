@@ -37,12 +37,12 @@ class YoutubePlayer extends StatefulWidget {
     this.thumbnailFormat = .webp,
     this.initParams,
     this.controlsBuilder,
-    this.borderRadius = BorderRadius.zero,
+    this.borderRadius = const BorderRadius.all(Radius.circular(8)),
   });
 
   /// Corner radius of the inline (non-fullscreen) player.
   ///
-  /// Defaults to [BorderRadius.zero].
+  /// Defaults to a circular radius of 8.
   final BorderRadius borderRadius;
 
   /// The controller for this player.
@@ -419,7 +419,7 @@ class _PlayerOverlayContent extends StatelessWidget {
     this.webViewKey,
     this.thumbnailQuality = .high,
     this.thumbnailFormat = .webp,
-    this.borderRadius = BorderRadius.zero,
+    this.borderRadius = const BorderRadius.all(Radius.circular(8)),
   });
 
   final BorderRadius borderRadius;

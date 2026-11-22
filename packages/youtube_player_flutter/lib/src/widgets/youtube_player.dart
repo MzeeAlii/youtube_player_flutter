@@ -57,7 +57,7 @@ class YoutubePlayer extends StatefulWidget {
     super.key,
     required this.controller,
     this.aspectRatio = 16 / 9,
-    this.borderRadius = BorderRadius.zero,
+    this.borderRadius = const BorderRadius.all(Radius.circular(8)),
     this.builder,
     this.autoHideDuration = const Duration(seconds: 3),
     this.backgroundColor,
