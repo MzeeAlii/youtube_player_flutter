@@ -507,10 +507,15 @@ class _PlayerOverlayContent extends StatelessWidget {
             child: CompositedTransformFollower(
               link: layerLink,
               showWhenUnlinked: false,
-              child: SizedBox(
-                width: playerRect.width,
-                height: playerRect.height,
-                child: child,
+              // Fork patch: the overlay sits outside the caller's tree, so a
+              // ClipRRect around the player can't round it. Clip here instead.
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: SizedBox(
+                  width: playerRect.width,
+                  height: playerRect.height,
+                  child: child,
+                ),
               ),
             ),
           );
